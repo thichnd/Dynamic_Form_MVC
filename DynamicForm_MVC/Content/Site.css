@@ -1,0 +1,110 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.droppable-active {
+    background-color: #dff0d8 !important;
+}
+
+.tools a {
+    cursor: pointer;
+    font-size: 80%;
+    display: inline;
+}
+
+.form-body .col-md-12.droppable.sortable {
+    min-height: 99px;
+    border: 2px solid #eee;
+    margin: 1px 0;
+    border-radius: 5px;
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.form-body .col-md-12.droppable.sortable:hover {
+    background: rgba(206, 249, 207, 0.45);
+}
+
+.draggable {
+    cursor: move;
+}
+
+.copy-notification {
+    color: #ffffff;
+    background-color: rgba(0,0,0,0.8);
+    padding: 20px;
+    border-radius: 30px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    margin-top: -30px;
+    margin-left: -85px;
+    display: none;
+    text-align: center;
+}
+
+.form-body {
+    min-height: 400px;
+    overflow-y: auto !important;
+}
+
+.required {
+    background-color: #FCFAB1 !important;
+}
+
+.modal-body {
+    overflow-y: auto !important;
+}
+
+.modal-body .form-control {
+    /*overflow-y: auto !important;*/
+    height: 100%;
+}
+
+.modal-body .form-control .row {
+    margin-left: -10px !important;
+    margin-right: -10px !important;
+}
+
+
+.hr {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+.label-title {
+    font-weight: normal !important;
+    font-size: 91%;
+    padding: 0px !important;
+}
+
+.add-rows #col-change{
+    display:table;
+    margin-top:10px;
+}
+.delete-row{
+    width:20px;
+    cursor:pointer;
+    margin: -18px -15px 2px;
+}
+.delete-row:hover{
+    color:red;
+}

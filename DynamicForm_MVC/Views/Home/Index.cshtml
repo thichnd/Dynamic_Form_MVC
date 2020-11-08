@@ -1,0 +1,218 @@
+﻿@{
+    ViewBag.Title = "Dynamic Form";
+}
+
+<h2>DYNAMIC FORM </h2>
+<div class="col-lg-12">
+    <div class="row">
+        <div style="margin-top: 0px;">
+            <div class="row">
+                <div class="col-md-3" style="background-color: #fff;">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#control">Control</a></li>
+                        <li><a data-toggle="tab" href="#html">html</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="control" class="tab-pane fade in active">
+                            <h3>Elements</h3>
+                            <form role="form" class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="draggable" id="div-label-1">
+                                        <div class="col-md-4" id="col-change">
+                                            <label id="label-id-1" class="control-label col-md-12 label-title">Label Title</label>
+                                            <p class="tools hidden">
+                                                <a class="edit-link">Sửa</a> | <a class="remove-link">Xóa</a>
+                                            </p>
+                                            <p class="help-block" style="height: 3px"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="draggable" id="div-textbox-1">
+                                        <div class="col-md-12" id="col-change">
+                                            @*<label for="input-id-1" class="control-label col-md-2 label-title">Text Input</label>*@
+                                            <div class="col-md-12">
+                                                <input type="text" class="ctrl-textbox form-control" id="input-id-1" placeholder="Enter Text" />
+                                            </div>
+                                            <p class="tools hidden">
+                                                <a class="edit-link">Sửa</a> | <a class="remove-link">Xóa</a>
+                                            </p>
+                                            <p class="help-block" style="height: 3px"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="draggable" id="div-textarea-1">
+                                        <div class="col-md-12" id="col-change">
+                                            @*<label for="textarea-id-1" class="control-label col-md-2 label-title">Textarea Input</label>*@
+                                            <div class="col-md-12">
+                                                <textarea class="ctrl-textarea form-control" id="textarea-id-1"></textarea>
+                                            </div>
+                                            <p class="tools hidden">
+                                                <a class="edit-link">Sửa</a> | <a class="remove-link">Xóa</a>
+                                            </p>
+                                            <p class="help-block" style="height: 3px"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="draggable" id="div-select-1">
+                                        <div class="col-md-12" id="col-change">
+                                           @* <label for="select-1" class="control-label col-md-2 label-title">Select</label>*@
+                                            <div class="col-md-12">
+                                                <select class="ctrl-combobox form-control" id="select-1">
+                                                    <option value="Option 1">Option 1</option>
+                                                    <option value="Option 2">Option 2</option>
+                                                    <option value="Option 3">Option 3</option>
+                                                </select>
+                                            </div>
+                                            <p class="tools hidden">
+                                                <a class="edit-link">Sửa</a> | <a class="remove-link">Xóa</a>
+                                            </p>
+                                            <p class="help-block" style="height: 3px"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="html" class="tab-pane fade">
+                            <h3>HTML</h3>
+                            <div class="form-horizontal">
+                                <label class="control-label">Gạch ngang</label>
+                                <div class="draggable">
+                                    <div class="hr"></div>
+                                    <p class="help-block" style="height: 3px"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9" style="">
+                    <div style="background-color: #fff; border-radius: 5px; padding: 20px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);">
+                        <div class="text-muted empty-form text-center" style="font-size: 24px;">Add rows.</div>
+                        <div class="row form-body">
+                            <p class="text-right">
+                                <button type="button" onclick="addRow()" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-plus"></span> Add
+                                </button>
+                            </p>
+                            <div class="col-md-12 add-rows"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="temp"></div>
+<nav class="navbar navbar-default navbar-fixed" role="navigation">
+    <div class="navbar-form" style="margin-right: 0; text-align: center">
+        <button type="submit" class="btn btn-primary" data-clipboard-text="testing" id="view-html" style="display: none">Xem HTML</button>
+        <button type="submit" class="btn btn-primary" id="preview-data">Review</button>
+        <button type="submit" class="btn btn-primary" id="save-data">Save</button>
+        <button type="submit" class="btn btn-primary" id="clear-data">Reset</button>
+    </div>
+</nav>
+
+<script id="control-customize-template" type="text/x-handlebars-template">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
+                <h4 class="modal-title">{{header}}</h4>
+            </div>
+            <div class="modal-body">
+                <form id="theForm" class="form-horizontal">
+                    <input type="hidden" value="{{type}}" name="type" />
+                    <input type="hidden" value="{{forCtrl}}" name="forCtrl" />
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-2 label-title">Name</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" value="" name="name" />
+                            </div>
+                        </div>
+                    </div>
+                    {{{content}}}
+                    <div class="form-group horizontal">
+                        <label class="control-label col-md-2 label-title">Size</label>
+                        <div class="col-md-6">
+                            <select class="form-control" id="addCol">
+                                <option value="col-md-1">Size 1</option>
+                                <option value="col-md-2">Size 2</option>
+                                <option value="col-md-3">Size 3</option>
+                                <option value="col-md-4">Size 4</option>
+                                <option value="col-md-5">Size 5</option>
+                                <option value="col-md-6">Size 6</option>
+                                <option value="col-md-7">Size 7</option>
+                                <option value="col-md-8">Size 8</option>
+                                <option value="col-md-9">Size 9</option>
+                                <option value="col-md-10">Size 10</option>
+                                <option value="col-md-11">Size 11</option>
+                                <option value="col-md-12">Size 12</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group horizontal">
+                        <label class="control-label col-md-2 label-title">Push to size</label>
+                        <div class="col-md-6">
+                            <select class="form-control" id="addColOffset">
+                                <option value="">-- // --</option>
+                                <option value="col-lg-offset-1">Push to 1 size</option>
+                                <option value="col-lg-offset-2">Push to 2 size</option>
+                                <option value="col-lg-offset-3">Push to 3 size</option>
+                                <option value="col-lg-offset-4">Push to 4 size</option>
+                                <option value="col-lg-offset-5">Push to 5 size</option>
+                                <option value="col-lg-offset-6">Push to 6 size</option>
+                                <option value="col-lg-offset-7">Push to 7 size</option>
+                                <option value="col-lg-offset-8">Push to 8 size</option>
+                                <option value="col-lg-offset-9">Push to 9 size</option>
+                                <option value="col-lg-offset-10">Push to 10 size</option>
+                                <option value="col-lg-offset-11">Push to 11 size</option>
+                                <option value="col-lg-offset-12">Push to 12 size</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal" onclick='save_customize_changes()'>Cập nhật</button>
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Đóng</button>
+                @*<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true" onclick='delete_ctrl()'>Delete</button>*@
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="textbox-template" type="text/x-handlebars-template">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-md-2 label-title">Placeholder</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="placeholder" value="" />
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="combobox-template" type="text/x-handlebars-template">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-md-2 label-title">Options</label>
+            <div class="col-md-6">
+                <textarea name="options" class="form-control" rows="5"></textarea>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="label-template" type="text/x-handlebars-template">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-md-2 label-title">Label</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="label" value="" />
+            </div>
+        </div>
+    </div>
+</script>
+
